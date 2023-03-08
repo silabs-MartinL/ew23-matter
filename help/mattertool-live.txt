@@ -1,0 +1,48 @@
+# Discriminators
+export DISCRIMINATOR=3841
+export DISCRIMINATOR=3842
+export DISCRIMINATOR=3843
+export DISCRIMINATOR=3844
+export DISCRIMINATOR=3845
+
+# General
+mattertool help 
+
+# Network
+mattertool startThread
+mattertool getThreadDataset
+
+# Lights commission
+mattertool bleThread -n 100
+mattertool bleThread -n 101
+mattertool bleThread -n 102
+mattertool bleThread -n 103
+mattertool bleThread -n 104
+
+# Lights control
+mattertool on -n 100
+mattertool off -n 100
+mattertool toggle -n 100
+
+# Switches commission
+mattertool bleThread -n 200
+mattertool bleThread -n 201
+mattertool bleThread -n 202
+mattertool bleThread -n 203
+mattertool bleThread -n 204
+
+# Lights access control list, single switch
+mattertool accesscontrol write acl '[ { "fabricIndex" : 1 , "privilege" : 5 , "authMode" : 2 , "subjects" : [ 112233 ] , "targets" : null } , { "fabricIndex" : 1 , "privilege" : 3 , "authMode" : 2 , "subjects" : [ 200 ] , "targets" : null } ]' 100 0
+mattertool accesscontrol read acl 100 0
+
+# Switch bind, single light
+mattertool binding write binding '[ { "fabricIndex" : 1 , "node" : 100 , "endpoint" : 1 , "cluster" : 6 } ]' 200 1
+mattertool binding read binding 200 1
+
+# Light access control list, all switches
+mattertool accesscontrol write acl '[ { "fabricIndex" : 1 , "privilege" : 5 , "authMode" : 2 , "subjects" : [ 112233 ] , "targets" : null } , { "fabricIndex" : 1 , "privilege" : 3 , "authMode" : 2 , "subjects" : [ 200, 201, 202, 203, 204 ] , "targets" : null } ]' 100 0
+mattertool accesscontrol read acl 100 0
+
+# Switch bind, two lights
+mattertool binding write binding '[ { "fabricIndex" : 1 , "node" : 100 , "endpoint" : 1 , "cluster" : 6 } , { "fabricIndex" : 1 , "node" : 101 , "endpoint" : 1 , "cluster" : 6 } ]' 200 1
+mattertool binding read binding 200 1

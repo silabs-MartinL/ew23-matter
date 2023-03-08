@@ -1,0 +1,43 @@
+mattertool help 
+
+mattertool startThread
+
+mattertool getThreadDataset
+
+mattertool bleThread -n 580
+
+mattertool on -n 580
+
+mattertool off -n 580
+
+mattertool toggle -n 580
+
+mattertool bleThread -n 9797
+
+mattertool accesscontrol write acl '[ { "fabricIndex" : 1 , "privilege" : 5 , "authMode" : 2 , "subjects" : [ 112233 ] , "targets" : null } , { "fabricIndex" : 1 , "privilege" : 3 , "authMode" : 2 , "subjects" : [ 9797 ] , "targets" : null } ]' 580 0
+
+mattertool accesscontrol read acl 580 0
+
+mattertool binding write binding '[ { "fabricIndex" : 1 , "node" : 580 , "endpoint" : 1 , "cluster" : 6 } ]' 9797 1
+
+mattertool binding read binding 9797 1
+
+mattertool bleThread -n 531
+
+mattertool toggle -n 531
+
+mattertool accesscontrol write acl '[ { "fabricIndex" : 1 , "privilege" : 5 , "authMode" : 2 , "subjects" : [ 112233 ] , "targets" : null } , { "fabricIndex" : 1 , "privilege" : 3 , "authMode" : 2 , "subjects" : [ 9797 ] , "targets" : null } ]' 531 0
+
+mattertool binding write binding '[ { "fabricIndex" : 1 , "node" : 580 , "endpoint" : 1 , "cluster" : 6 } , { "fabricIndex" : 1 , "node" : 531 , "endpoint" : 1 , "cluster" : 6 } ]' 9797 1
+
+mattertool binding read binding 9797 1
+
+-------------------------------------------------------------------------------
+
+python3 FactoryDataProvider.py --passcode 20202021 --discriminator 0xf01 --spake2_iteration 1000 --spake2_salt U1BBS0UyUCBLZXkgU2FsdA== --spake2_verifier uWFwqugDNGiEck/po7KHwwMwwqZgN10XuyBajPGuyzUEV/iree4lOrao5GuwnlQ65CJzbeUB49s31EH+NEkg0JVI5MGCQGMMT/SRPFNRODm3wH/MBiehuFc6FJ/NH6Rmzw==
+
+python FactoryDataProvider.py --passcode 20202021 --discriminator 0xf01 --spake2_iteration 1000 --spake2_salt U1BBS0UyUCBLZXkgU2FsdA== --spake2_verifier uWFwqugDNGiEck/po7KHwwMwwqZgN10XuyBajPGuyzUEV/iree4lOrao5GuwnlQ65CJzbeUB49s31EH+NEkg0JVI5MGCQGMMT/SRPFNRODm3wH/MBiehuFc6FJ/NH6Rmzw==
+
+cd matter
+
+./scripts/examples/gn_efr32_example.sh ./examples/lighting-app/efr32/ ./out/lighting-app BRD2601B
